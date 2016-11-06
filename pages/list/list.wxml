@@ -1,0 +1,20 @@
+<view class="list-header">
+	<view class="header-pic">
+		<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+	</view>
+	<view class="header-name">
+		{{userInfo.nickName}}，恭喜您获得了以下奖品：
+	</view>
+	<view class="list-container">
+		<view class="list-item">1元红包4个</view>
+		<view class="list-item">6元红包1个</view>
+		<view class="list-item">8元红包2个</view>
+		<view class="list-item">10元红包1个</view>
+		<view class="list-item">5元话费1个</view>
+	</view>
+
+	<view class="list-btn">
+		<button bindtap="gotoLottery" type="primary">去抽奖</button>
+	</view>
+</view>
+
