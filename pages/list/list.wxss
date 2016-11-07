@@ -19,7 +19,7 @@ page {
 }
 .list-container{
 	margin: 10px;
-	padding: 15px;
+	padding: 5px 10px;
 	border: 1px solid #ccc;
 	background-color: #eee;
 	text-align: left;
@@ -27,7 +27,7 @@ page {
 }
 .list-item{
 	display: block;
-	padding: 8px 0;
+	padding: 0 0;
 }
 
 .list-btn{

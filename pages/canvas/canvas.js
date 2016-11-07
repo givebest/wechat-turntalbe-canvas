@@ -43,6 +43,11 @@ Page({
       })
     }, 100)
 
+     // 记录奖品
+    var winAwards = wx.getStorageSync('winAwards') || {data:[]}
+    winAwards.data.push(awardsConfig.awards[awardIndex].name + '1个')
+    wx.setStorageSync('winAwards', winAwards)
+
     // 中奖提示
     setTimeout(function() {
       wx.showModal({
