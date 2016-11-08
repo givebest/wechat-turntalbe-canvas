@@ -19,7 +19,7 @@ Page({
     if (list && list.data && list.data.length > 0) {
       list = list.data
     }else {
-      list = ['您还中奖，快去抽奖吧。']
+      list = []
     }
 
     //调用应用实例的方法获取全局数据
