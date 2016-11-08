@@ -8,7 +8,7 @@ Page({
   },
   //事件处理函数
   gotoLottery: function() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../canvas/canvas'
     })
   },

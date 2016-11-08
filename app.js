@@ -26,6 +26,7 @@ App({
   },
   globalData:{
     userInfo:null,
-    awardsConfig: {}
+    awardsConfig: {},
+    runDegs: 0
   }
 })

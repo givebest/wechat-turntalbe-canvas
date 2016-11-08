@@ -6,7 +6,7 @@ Page({
     btnDisabled: ''
   },
   gotoList: function() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../list/list'
     })
   },
@@ -15,33 +15,38 @@ Page({
     var awardIndex = Math.random() * 6 >>> 0;
 
     // 获取奖品配置
-    var awardsConfig = app.awardsConfig
+    var awardsConfig = app.awardsConfig,
+        runNum = 8
     if (awardIndex < 2) awardsConfig.chance = false
     console.log(awardIndex)
 
     // 初始化 rotate
-    var animationInit = wx.createAnimation({
-      duration: 1
+  /*  var animationInit = wx.createAnimation({
+      duration: 10
     })
     this.animationInit = animationInit;
     animationInit.rotate(0).step()
     this.setData({
       animationData: animationInit.export(),
       btnDisabled: 'disabled'
-    })
+    })*/
 
     // 旋转抽奖
-    setTimeout(function() {
-      var animationRun = wx.createAnimation({
-        duration: 4000,
-        timingFunction: 'ease'
-      })
-      that.animationRun = animationRun
-      animationRun.rotate(360 * 8 - awardIndex * (360 / 6)).step()
-      that.setData({
-        animationData: animationRun.export()
-      })
-    }, 100)
+    app.runDegs = app.runDegs || 0
+    console.log('deg', app.runDegs)
+    app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (360 * runNum - awardIndex * (360 / 6))
+    console.log('deg', app.runDegs)
+
+    var animationRun = wx.createAnimation({
+      duration: 4000,
+      timingFunction: 'ease'
+    })
+    that.animationRun = animationRun
+    animationRun.rotate(app.runDegs).step()
+    that.setData({
+      animationData: animationRun.export(),
+      btnDisabled: 'disabled'
+    })
 
      // 记录奖品
     var winAwards = wx.getStorageSync('winAwards') || {data:[]}
@@ -60,7 +65,7 @@ Page({
           btnDisabled: ''
         })  
       }
-    }, 4100);
+    }, 4000);
     
 
     /*wx.request({
@@ -128,32 +133,33 @@ Page({
 
       // 颜色间隔
       if (i % 2 == 0) {
-          ctx.setFillStyle('#ffb820');
+          ctx.setFillStyle('rgba(255,184,32,.1)');
       }else{
-          ctx.setFillStyle('#ffcb3f');
+          ctx.setFillStyle('rgba(255,203,63,.1)');
       }
 
       // 填充扇形
       ctx.fill();
       // 绘制边框
       ctx.setLineWidth(0.5);
-      ctx.setStrokeStyle('#e4370e');
+      ctx.setStrokeStyle('rgba(228,55,14,.1)');
       ctx.stroke();
 
       // 恢复前一个状态
       ctx.restore();
 
       // 奖项列表
-      html.push({turn: i * turnNum + 'turn', award: awardsConfig[i].name});    
+      html.push({turn: i * turnNum + 'turn', lineTurn: i * turnNum + turnNum / 2 + 'turn', award: awardsConfig[i].name});    
     }
     that.setData({
         awardsList: html
       });
 
-    wx.drawCanvas({
+    // 对 canvas 支持度太差，换种方式实现
+    /*wx.drawCanvas({
       canvasId: 'lotteryCanvas',
       actions: ctx.getActions()
-    })
+    })*/
 
   }
 

@@ -31,7 +31,7 @@ page {
   width: 300px;
   height: 300px;  
   border-radius: 50%;
-  border: 2px solid #E44025;
+  /*border: 2px solid #E44025;*/
   box-shadow: 0 2px 3px #333,
               0 0 2px #000;
 }
@@ -41,13 +41,15 @@ page {
   top: 0;
   z-index: 1;
   display: block;
-  width: inherit;
-  height: inherit;
+  width: 300px;
+  height: 300px;
   border-radius: inherit;
   background-clip: padding-box;
   background-color: #ffcb3f;
 }
 .canvas-element{
+  position: relative;
+  z-index: 1;
   width: inherit;
   height: inherit;
   border-radius: 50%;
@@ -58,7 +60,7 @@ page {
   top: 0;
   width: inherit;
   height: inherit;
-  z-index: 2;
+  z-index: 9999;
 }
 .canvas-item{
   position: absolute;
@@ -81,11 +83,33 @@ page {
   transform-origin: 50% 150px;
 }
 
+/* 分隔线 */
+.canvas-line{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: inherit;
+  height: inherit;
+  z-index: 99;
+}
+.canvas-litem{
+  position: absolute;
+   left: 150px;
+   top: 0;
+   width: 1px;
+   height: 150px;
+   background-color: rgba(228,55,14,.4);
+   overflow: hidden; 
+   -webkit-transform-origin: 50% 150px; 
+   transform-origin: 50% 150px;
+}
+
+
 .canvas-btn{
   position: absolute;
   left: 110px;
   top: 110px;
-  z-index: 3;
+  z-index: 400;
   width: 80px;
   height: 80px;
   border-radius: 50%;
